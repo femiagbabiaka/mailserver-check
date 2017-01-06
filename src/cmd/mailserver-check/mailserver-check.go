@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"github.com/fatih/color"
 )
 
 const helpDocs = 
@@ -34,7 +35,7 @@ func main() {
 	flag.Parse();
 	
 	if mailserverDomain == "" {
-		fmt.Println(helpDocs)
+		color.White(helpDocs)
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
@@ -42,32 +43,32 @@ func main() {
 	ipAddress := lookupIP(mailserverDomain)
 
 	for i := range ipAddress {
-		fmt.Printf("ipAddresses: %+v\n", ipAddress[i])
+		color.Red("ipAddresses: %+v\n", ipAddress[i])
 	}
 
 	
 	mxRecords := lookupMX(mailserverDomain)
 
 	for i := range mxRecords {
-		fmt.Printf("MX Records: %+v\n", mxRecords[i])
+		color.Green("MX Records: %+v\n", mxRecords[i])
 	}
 	
 	reverseAddr := lookupReverseAddr(ipAddress[0].String())
 	
 	for i := range reverseAddr {
-		fmt.Printf("ReverseAddr: %+v\n", reverseAddr[i])
+		color.Blue("ReverseAddr: %+v\n", reverseAddr[i])
 	}
 	
 	spfRecord := lookupSPF(mailserverDomain)
 
 	for i := range spfRecord {
-		fmt.Printf("SPF Record: %+v\n", spfRecord[i])
+		color.Magenta("SPF Record: %+v\n", spfRecord[i])
 	}
 	
 	dkimRecord := lookupDKIM(mailserverDomain)
 
 	for i := range dkimRecord {
-		fmt.Printf("DKIM Record: %+v\n", dkimRecord[i])
+		color.Cyan("DKIM Record: %+v\n", dkimRecord[i])
 	}
 
 }
