@@ -52,7 +52,7 @@ func main() {
 		fmt.Printf("MX Records: %+v\n", mxRecords[i])
 	}
 	
-	reverseAddr := lookupMX(mailserverDomain)
+	reverseAddr := lookupReverseAddr(ipAddress[0].String())
 	
 	for i := range reverseAddr {
 		fmt.Printf("ReverseAddr: %+v\n", reverseAddr[i])
@@ -76,7 +76,7 @@ func lookupIP (domain string) []net.IP {
 	ipAddress, err := net.LookupIP(domain)
 
 	if err != nil {
-		fmt.Printf("Can't find an IP address for domain %s. Lookup result: %s.", mailserverDomain, err)
+		fmt.Printf("Can't find an IP address for domain %s. Lookup result: %s.\n", mailserverDomain, err)
 	} 
 	
 	return ipAddress
@@ -86,7 +86,7 @@ func lookupMX (domain string) []*net.MX {
 	mxRecords, err := net.LookupMX(domain) 
 	
 	if err != nil {
-		fmt.Printf("Domain %s is missing MX records. Lookup result: %s", mailserverDomain, err)
+		fmt.Printf("Domain %s is missing MX records. Lookup result: %s\n", mailserverDomain, err)
 	}
 	
 	return mxRecords
@@ -96,7 +96,7 @@ func lookupReverseAddr(ip string) []string {
 	reverseAddr, err := net.LookupAddr(ip)
 	
 	if err != nil {
-		fmt.Printf("Can't find a reverse lookup for the domain %s. Lookup result: %s.", mailserverDomain, err)
+		fmt.Printf("Can't find a reverse lookup for the domain %s. Lookup result: %s.\n", mailserverDomain, err)
 	}
 	
 	return reverseAddr
@@ -106,7 +106,7 @@ func lookupSPF(domain string) []string {
 	spfRecord, err := net.LookupTXT(domain)
 	
 	if err != nil {
-		fmt.Printf("Can't find any Text records for the domain %s, Lookup result: %s.", mailserverDomain, err)
+		fmt.Printf("Can't find any Text records for the domain %s, Lookup result: %s.\n", mailserverDomain, err)
 	}
 	
 	return spfRecord
@@ -116,7 +116,7 @@ func lookupDKIM(domain string) []string {
 	dkimRecord, err := net.LookupTXT(fmt.Sprintf("dk._domainkey.%s", domain))
 	
 	if err != nil {
-		fmt.Printf("Can't find and DKIM records for the domain %s, Lookup result: %s.", mailserverDomain, err)
+		fmt.Printf("Can't find and DKIM records for the domain %s, Lookup result: %s.\n", mailserverDomain, err)
 	}
 	
 	return dkimRecord
