@@ -1,0 +1,25 @@
+{
+	"ImportPath": "mailserver-check",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/fatih/color",
+			"Comment": "v1.3.0",
+			"Rev": "5ec5d9d3c2cf82e9688b34e9bc27a94d616a7193"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Comment": "v0.0.7-1-g5411d3e",
+			"Rev": "5411d3eea5978e6cdc258b30de592b60df6aba96"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Rev": "281032e84ae07510239465db46bf442aa44b953a"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "0ed46b70d91ba0ab7273e1aea3c89ccc9a9cc489"
+		}
+	]
+}
